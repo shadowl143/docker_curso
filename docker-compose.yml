@@ -1,8 +1,24 @@
 version: '3.9'
 
 services:
+
+  db:
+    image: mysql
+    networks:
+      - mi_red
+    container_name: midbcompose
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: micurso
+      MYSQL_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
   app:
     build: ./server_api
+    depends_on:
+      - db
     networks:
       - mi_red
     container_name: servidorcompose
@@ -16,23 +32,8 @@ services:
       - ./server_api:/app
     ports:
       - "8001:8000"
-    
-  db:
-    image: mysql
-    networks:
-      - mi_red
-    container_name: midbcompose
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: micurso
-      MYSQL_PASSWORD: root
-    ports:
-      - "3306:3006"
-    volumes:
-          - db_data:/var/lib/mysql
 
 volumes:
-  - db_data:
+  db_data:
 networks:
   mi_red:
