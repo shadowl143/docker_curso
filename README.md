@@ -3,8 +3,8 @@ Curso intermedio de docker
 
 
 # Configuración.
-solo colocate en la raiz del proyecto y en seguida ejecuta docker-compose -p <nombreimagen> up -d
-
+solo colocate en la raiz del proyecto y en seguida ejecuta docker-compose -p <b>nombreimagen</b> up -d
+practica con las diferentes conexiones a la base de datos.
 
 #Precacion.
 1. el docker file tienen una linea de ports: en db la sintqaxis es algo asi como
