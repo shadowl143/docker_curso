@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  app:
+    build: ./server_api
+    networks:
+      - mi_red
+    container_name: servidorcompose
+    environment:
+      DB_HOST: midbcompose
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: micurso
+    working_dir: /app
+    volumes:
+      - ./server_api:/app
+    ports:
+      - "8001:8000"
+    
+  db:
+    image: mysql
+    networks:
+      - mi_red
+    container_name: midbcompose
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: micurso
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3006"
+    volumes:
+          - db_data:/var/lib/mysql
+
+volumes:
+  - db_data:
+networks:
+  mi_red:

@@ -1,0 +1,38 @@
+PRIMER PARTE:
+    * primero entrar a docker hub para conocerlo
+    * Mostrar el comando docker images y explicarlo
+    * Usar el comando docker pull con node.
+    * Descargar diferentes versiones y explicar que solo va a descargar lo que no tenemos y usar docker images (version  22 y 25 y explicar)
+    * Usar docker rm para eliminar una imagen.
+    * Explicar como se pueden eliminar varias imagenes.
+
+
+SEGUNDA PARTE:
+    * Descargar imagen redis
+    * Crear contenedor redis
+    * Docker start redis explicar
+    * docker stop redis explicar
+    * Docker ps y docker ps -a
+    * Docker restart explicar.
+    * Eliminar la imagen con docker rm.
+    USO DE VARIABLES.
+        * descargar imagen mysql.
+        * Crear contenedor mysql.
+        * docker create --name midb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_USER=root mysql
+        * docker exec -it midb bash entras al contenedor.
+        * mysql -u root -p usar a base de datos.
+        * docker run --name midb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_USER=root mysql -- esta parte explicar que esta modo debatch
+        * docker-compose -p mi_proyecto up -d
+
+-colocar en red ambos proyectos.
+    * docker network create mired
+    * docker network ls
+    * docker network inspect mired
+
+
+    * docker build -t miservidor .
+    * docker run -d --network mired  --name midbred -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_USER=root mysql
+    * docker run -d --network mired  --name servidorred -p 8000:8000 miservidor
+
+
+## docker compose y subir imagen a docker hub
